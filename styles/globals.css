@@ -256,6 +256,7 @@ span.text-red {
 }
 .banner-desc .right p {
   font-size: 18px;
+  width: 400px;
 }
 .banner-desc .right .company-desc {
   font-size: 14px;
