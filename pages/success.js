@@ -1,0 +1,44 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import React from "react";
+import Link from "next/link";
+import { BsBagCheckFill } from "react-icons/bi";
+
+import { useStateContext } from "../context/StateContext";
+import { runFireworks } from "../lib/utils";
+
+function Success() {
+  const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
+
+  React.useEffect(() => {
+    localStorage.clear();
+    setCartItems([]);
+    setTotalPrice(0);
+    setTotalQuantities(0);
+    runFireworks;
+  }, []);
+
+  return (
+    <div className="success-wrapper">
+      <div className="success">
+        <p className="icon">
+          <BsBagCheckFill />
+          <h2>Thank you for your order</h2>
+          <p className="email-msg">Check you email inbox for your receipt</p>
+          <p className="description">
+            If you have any questions, please email:
+            <a href="mailto:order@example.com" className="email">
+              order@example.com
+            </a>
+          </p>
+        </p>
+        <Link href="/">
+          <button type="button" width="300px" className="btn">
+            Continue Shopping
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default Success;

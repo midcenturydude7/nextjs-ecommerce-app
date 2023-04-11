@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 
 const Context = React.createContext();
 
-export default function StateContext({ children }) {
+export function StateContext({ children }) {
   const [showCart, setShowCart] = React.useState(false);
   const [cartItems, setCartItems] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState(0);
@@ -106,6 +106,9 @@ export default function StateContext({ children }) {
         onAdd,
         toggleCartItemQuantity,
         onRemove,
+        setCartItems,
+        setTotalPrice,
+        setTotalQuantities,
       }}>
       {children}
     </Context.Provider>
