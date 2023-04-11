@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import Link from "next/link";
-import { BsBagCheckFill } from "react-icons/bi";
+import { BsBagCheckFill } from "react-icons/bs";
 
 import { useStateContext } from "../context/StateContext";
 import { runFireworks } from "../lib/utils";
