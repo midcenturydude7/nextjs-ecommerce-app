@@ -101,6 +101,8 @@ function ProductDetails({ product, products }) {
 }
 
 export const getStaticPaths = async () => {
+  // Retrieve all the products in Products collection
+  // and assign it to a variable: query
   const query = `*[_type == "product"] {
     slug {
       current
@@ -108,8 +110,12 @@ export const getStaticPaths = async () => {
   }
   `;
 
+  // Fetch all the products from the product collection
+  // in the database
   const products = await client.fetch(query);
 
+  // Map over the products and returns an object assigned
+  // to the variable paths that contains the slug
   const paths = products.map((product) => ({
     params: {
       slug: product.slug.current,
@@ -122,15 +128,21 @@ export const getStaticPaths = async () => {
   };
 };
 
+// Fetches a query from the Sanity dataset that
+// looks for a product with a slug that matches
+// the slug in the URL
 export const getStaticProps = async ({ params: { slug } }) => {
   const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
   const productsQuery = '*[_type == "product"]';
 
+  // Fetches a query from the Sanity dataset that
+  // looks for all products
   const product = await client.fetch(query);
   const products = await client.fetch(productsQuery);
 
   console.log(product);
 
+  // Returns the product and products as props
   return {
     props: { products, product },
   };
